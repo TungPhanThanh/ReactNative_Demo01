@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { View, TextInput, Text, StyleSheet, ScrollView, Image, StatusBar } from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import Swiper from 'react-native-swiper';
 
 export default class HomeTab extends Component {
     render() {
         return (
             <View>
                 {/* <StatusBar backgroundColor="#f4511e" barStyle="light-content" /> */}
-                <View style={styles.bar}>
+                {/* <View style={styles.bar}>
                     <Image style={styles.avatar}
                         source={require('../image/trangbom.jpg')}>
                     </Image>
@@ -23,40 +24,23 @@ export default class HomeTab extends Component {
                             autoCorrect={false}
                             returnKeyType='next' />
                     </View>
-                </View>
-                <ScrollView>
-                    <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Text style={{ fontSize: 96 }}>If you like</Text>
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Text style={{ fontSize: 96 }}>Scrolling down</Text>
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Text style={{ fontSize: 96 }}>What's the best</Text>
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Text style={{ fontSize: 96 }}>Framework around?</Text>
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Image source={{ uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64 }} />
-                    <Text style={{ fontSize: 80 }}>React Native</Text>
-                </ScrollView>
+                </View> */}
+                <Swiper
+                    style={styles.wrapper}
+                    showsButtons={true}
+                    autoplay={true}
+                    loop={true}
+                    height={200}>
+                    <View style={styles.slide1}>
+                        <Text style={styles.text}>Hello Swiper</Text>
+                    </View>
+                    <View style={styles.slide2}>
+                        <Text style={styles.text}>Beautiful</Text>
+                    </View>
+                    <View style={styles.slide3}>
+                        <Text style={styles.text}>And simple</Text>
+                    </View>
+                </Swiper>
             </View >
         );
     }
@@ -113,5 +97,29 @@ const styles = StyleSheet.create({
         width: '90%',
         marginStart: 5,
         paddingVertical: 0,
+    },
+    wrapper: {},
+    slide1: {
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB'
+    },
+    slide2: {
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5'
+    },
+    slide3: {
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92BBD9'
+    },
+    text: {
+        color: '#000000',
+        fontSize: 30,
+        fontWeight: 'bold'
     },
 });
