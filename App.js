@@ -48,15 +48,15 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   let IconComponent = Ionicons;
   let iconName;
   if (routeName === 'Home') {
-    iconName = `md-home`;
+    iconName = `ios-basketball`;
     // We want to add badges to home tab icon
     IconComponent = HomeIconWithBadge;
   } else if (routeName === 'Menu') {
-    iconName = `md-grid`;
+    iconName = `ios-flask`;
   } else if (routeName === 'Person') {
-    iconName = `md-person`;
+    iconName = `md-battery-charging`;
   } else if (routeName === 'Setting') {
-    iconName = `md-search`;
+    iconName = `md-settings`;
   }
 
   // You can return any component that you like here!
