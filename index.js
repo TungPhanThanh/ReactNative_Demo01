@@ -8,4 +8,6 @@ import Home from './src/screens/HomeTab';
 import {name as appName} from './app.json';
 import swiper from './src/test/swiper';
 
-AppRegistry.registerComponent(appName, () => swiper);
+console.disableYellowBox = true
+
+AppRegistry.registerComponent(appName, () => App);
