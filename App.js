@@ -1,11 +1,18 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import {
+  createAppContainer,
+  createBottomTabNavigator,
+  createDrawerNavigator,
+  createStackNavigator,
+  createSwitchNavigator,
+} from 'react-navigation';
 import HomeTab from './src/screens/HomeTab';
 import MenuTab from './src/screens/MenuTab';
 import PersonTab from './src/screens/PersonTab';
 import SettingTab from './src/screens/SettingTab';
+import DetailsPlaylist from './src/screens/DetailsPlaylist';
 
 class IconWithBadge extends React.Component {
   render() {
@@ -43,51 +50,85 @@ const HomeIconWithBadge = props => {
   return <IconWithBadge {...props} badgeCount={2} />;
 };
 
-const getTabBarIcon = (navigation, focused, tintColor) => {
-  const { routeName } = navigation.state;
-  let IconComponent = Ionicons;
-  let iconName;
-  if (routeName === 'Home') {
-    iconName = `ios-basketball`;
-    // We want to add badges to home tab icon
-    IconComponent = HomeIconWithBadge;
-  } else if (routeName === 'Menu') {
-    iconName = `ios-flask`;
-  } else if (routeName === 'Person') {
-    iconName = `md-battery-charging`;
-  } else if (routeName === 'Setting') {
-    iconName = `md-settings`;
-  }
-
-  // You can return any component that you like here!
-  return <IconComponent name={iconName} size={25} color={tintColor} />;
-};
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: HomeTab,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  DetailsPlaylist: {
+    screen: DetailsPlaylist,
+    navigationOptions: {
+      headerTitle: 'Playlist',
+      headerStyle: {
+        backgroundColor: '#fff',
+        height: 50,
+      },
+      headerTintColor: '#000000',
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    },
+  },
+});
 
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
-      screen: HomeTab,
+      screen: HomeStack,
+      navigationOptions: {
+        tabBarIcon: ({ focused, tintColor }) => {
+          let IconComponent = Ionicons;
+          let iconName;
+          IconComponent = HomeIconWithBadge;
+          iconName = `ios-globe${focused ? '' : ''}`;
+          return <IconComponent name={iconName} size={25} color={tintColor} />;
+        },
+        tabBarLabel: 'Discover',
+      },
     },
     Menu: {
       screen: MenuTab,
+      navigationOptions: {
+        tabBarIcon: ({ focused, tintColor }) => {
+          let iconName;
+          iconName = `ios-grid${focused ? '' : ''}`;
+          return <Ionicons name={iconName} size={25} color={tintColor} />;
+        },
+        tabBarLabel: 'Menu',
+      },
     },
     Person: {
       screen: PersonTab,
+      navigationOptions: {
+        tabBarIcon: ({ focused, tintColor }) => {
+          let iconName;
+          iconName = `ios-person${focused ? '' : ''}`;
+          return <Ionicons name={iconName} size={25} color={tintColor} />;
+        },
+        tabBarLabel: 'Person',
+      },
     },
     Setting: {
       screen: SettingTab,
+      navigationOptions: {
+        tabBarIcon: ({ focused, tintColor }) => {
+          let iconName;
+          iconName = `ios-settings${focused ? '' : ''}`;
+          return <Ionicons name={iconName} size={25} color={tintColor} />;
+        },
+        tabBarLabel: 'Settings',
+      },
     },
   },
-  
   {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) =>
-        getTabBarIcon(navigation, focused, tintColor),
-    }),
     tabBarOptions: {
-      activeTintColor: '#f4511e',
+      activeTintColor: '#ab1aad',
       inactiveTintColor: 'gray',
     },
+    animationEnabled: false,
+    swipeEnabled: true,
   });
 
 export default createAppContainer(TabNavigator);

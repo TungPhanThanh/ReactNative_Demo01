@@ -53,23 +53,10 @@ const styles = StyleSheet.create({
         paddingVertical: 0,
     },
     wrapper: {},
-    slide1: {
+    slide: {
         height: 200,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#9DD6EB'
-    },
-    slide2: {
-        height: 200,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5'
-    },
-    slide3: {
-        height: 200,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9'
     },
     text: {
         color: '#000000',

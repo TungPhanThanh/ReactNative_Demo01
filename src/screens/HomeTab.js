@@ -7,25 +7,18 @@ import {
     ScrollView,
     Image,
     StatusBar,
-    FlatList
+    FlatList,
+    TouchableOpacity
 } from 'react-native';
-import { Searchbar } from 'react-native-paper';
 import Swiper from 'react-native-swiper';
 import styles from '../styles/TabStyles';
 
 export default class HomeTab extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            dataSource: {},
-        };
-    }
-
     componentDidMount() {
         var that = this;
         let items = Array.apply(null, Array(9)).map((v, i) => {
-            return { id: 1, source: 'd:/React Native/FirstDemo/src/image/details.jpg' + (i + 1) };
+            return { id: 1, source: '' + (i + 1) };
         });
         that.setState({
             dataSource: items,
@@ -35,6 +28,7 @@ export default class HomeTab extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
+                {/* Search View */}
                 <View style={styles.bar}>
                     <Image style={styles.avatar}
                         source={require('../image/trangbom.jpg')}>
@@ -52,7 +46,9 @@ export default class HomeTab extends Component {
                             returnKeyType='next' />
                     </View>
                 </View>
+                {/* ScrollView */}
                 <ScrollView>
+                    {/* Swiper View */}
                     <View style={{ height: 200 }}>
                         <Swiper
                             style={styles.wrapper}
@@ -64,23 +60,29 @@ export default class HomeTab extends Component {
                             paginationStyle={{
                                 top: -150, left: null, right: 10,
                             }}>
-                            <View style={styles.slide1}>
-                                <Text style={styles.text}>Hello Swiper</Text>
+                            <View style={styles.slide}>
+                                <Image
+                                    style={{ height: '100%', width: '100%' }}
+                                    source={{ uri: 'https://lh3.googleusercontent.com/uL2fI2IeyDgEZZUgddz7ZDGY_t0NG_TOZXCiSA0OOKhXAbPIQKCiKIPNiiItNiQ3fA' }}></Image>
                             </View>
-                            <View style={styles.slide2}>
-                                <Text style={styles.text}>Beautiful</Text>
+                            <View style={styles.slide}>
+                                <Image style={{ height: '100%', width: '100%' }} source={{ uri: 'https://www.isb.edu.vn/Res/global/images/zing.jpg' }}></Image>
                             </View>
-                            <View style={styles.slide3}>
-                                <Text style={styles.text}>And simple</Text>
+                            <View style={styles.slide}>
+                                <Image style={{ height: '100%', width: '100%' }} source={{ uri: 'https://zmp3-photo-fbcrawler.zadn.vn/cover_video/f/f/3/3/ff33b3808f586b71b41f7d9a9a1b9db5.jpg' }}></Image>
+                            </View>
+                            <View style={styles.slide}>
+                                <Image style={{ height: '100%', width: '100%' }} source={{ uri: 'https://static-zmp3.zadn.vn/zma_2018/images/thumbnail_zma.jpg' }}></Image>
                             </View>
                         </Swiper>
                     </View>
-                    <View style={{ marginTop: 10 }}>
+                    {/* Flast List View */}
+                    <View style={{ marginTop: 10, marginBottom: 5, }}>
                         <View style={{ height: 30, marginStart: 5 }}>
                             <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>CÓ THỂ BẠN MUỐN NGHE ></Text>
                         </View>
                         <FlatList
-                            style={{ height: 130 }}
+                            style={{ height: 150 }}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             data={[
@@ -98,46 +100,99 @@ export default class HomeTab extends Component {
                             renderItem={
                                 ({ item }) =>
                                     <View>
-                                        <Image style={{ height: 100, width: 100, margin: 5, justifyContent: 'center' }} source={require('../image/trangbom.jpg')}></Image>
+                                        <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={require('../image/trangbom.jpg')}></Image>
                                         <Text style={{ margin: 5 }}>{item.key}</Text>
                                     </View>
                             }
                         />
-                        <View style={{ height: 20, marginTop: 20 }}>
+                        <TouchableOpacity
+                            style={{ height: 20, marginTop: 20 }}
+                            onPress={() => this.props.navigation.navigate('DetailsPlaylist')}>
                             <Text style={{ color: 'purple', fontSize: 12, paddingTop: 5, textAlign: 'center' }}>Xem thêm ></Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
-                    <View style={{ marginTop: 10 }}>
-                        <View style={{ height: 30, marginStart: 5 }}>
+                    {/* Flast List View */}
+                    <View style={{ marginTop: 5, marginBottom: 10, }}>
+                        <TouchableOpacity style={{ height: 30, marginStart: 5 }}>
                             <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>PLAYLIST NGHE GẦN ĐÂY ></Text>
-                        </View>
+                        </TouchableOpacity>
                         <FlatList
-                            style={{ height: 130 }}
+                            style={{ height: 150 }}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             data={[
-                                { key: 'Devin' },
-                                { key: 'Dan' },
-                                { key: 'Dominic' },
-                                { key: 'Jackson' },
-                                { key: 'James' },
-                                { key: 'Joel' },
-                                { key: 'John' },
-                                { key: 'Jillian' },
-                                { key: 'Jimmy' },
-                                { key: 'Julie' },
+                                { key: 'Devin', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'Dan', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'Dominic', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'Jackson', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'James', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'Joel', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'John', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'Jillian', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'Jimmy', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
+                                { key: 'Julie', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
                             ]}
                             renderItem={
                                 ({ item }) =>
                                     <View>
-                                        <Image style={{ height: 100, width: 100, margin: 5, }} source={require('../image/trangbom.jpg')}></Image>
+                                        <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={{ uri: item.image }}></Image>
                                         <Text style={{ margin: 5 }}>{item.key}</Text>
                                     </View>
-                            }
-                        />
-                        <View style={{ height: 20, marginTop: 20 }}>
+                            } />
+                        <TouchableOpacity
+                            style={{ height: 20, marginTop: 20 }}
+                            onPress={() => this.props.navigation.navigate('DetailsPlaylist')}>
                             <Text style={{ color: 'purple', fontSize: 12, paddingTop: 5, marginBottom: 10, textAlign: 'center' }}>Xem thêm ></Text>
-                        </View>
+                        </TouchableOpacity>
+                    </View>
+                    {/* Grid View  */}
+                    <View style={{ marginTop: 10, marginBottom: 5, }}>
+                        <TouchableOpacity style={{ height: 30, marginStart: 5, marginBottom: 10, }}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>#CHARTATTACK OF WEEK</Text>
+                        </TouchableOpacity>
+                        <FlatList
+                            style={{ height: 200 }}
+                            numColumns={2}
+                            columnWrapperStyle={{ justifyContent: 'space-around' }}
+                            showsHorizontalScrollIndicator={false}
+                            showsVerticalScrollIndicator={false}
+                            data={[
+                                { key: 'Devin', image: 'http://s.nhac.vn/v1/seo/album/s1/0/21/268/22295255.jpg' },
+                                { key: 'Dan', image: 'http://s.nhac.vn/v1/seo/album/s1/0/21/268/22295255.jpg' },
+                                { key: 'Dominic', image: 'http://s.nhac.vn/v1/seo/album/s1/0/21/268/22295255.jpg' },
+                                { key: 'Jackson', image: 'https://zmp3-photo-fbcrawler.zadn.vn/covers/d/2/d28ef98a1827d390296f2759555cc606_1499827932.jpg' },
+                            ]}
+                            renderItem={
+                                ({ item }) =>
+                                    <View>
+                                        <Image style={{ height: 80, width: 165, margin: 5, borderRadius: 5, resizeMode: 'stretch' }} source={{ uri: item.image }}></Image>
+                                    </View>
+                            } />
+                    </View>
+                    {/* Horizontal Flast list */}
+                    <View style={{ marginTop: 10, marginBottom: 5, }}>
+                        <TouchableOpacity style={{ height: 30, marginStart: 5, marginBottom: 10, }}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>CHỦ ĐỀ VÀ THỂ LOẠI</Text>
+                        </TouchableOpacity>
+                        <FlatList
+                            style={{ height: 100 }}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            showsVerticalScrollIndicator={false}
+                            data={[
+                                { key: 'Devin', image: 'https://photo-zmp3.zadn.vn/cover/6/0/8/d/608d6474b6daa5563eb5c088ca08cc98.jpg' },
+                                { key: 'Devin', image: 'https://photo-zmp3.zadn.vn/cover/6/e/2/1/6e21382da5676fbd693a932a3625a5b8.jpg' },
+                                { key: 'Dan', image: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542616072586_org.jpg' },
+                                { key: 'Dominic', image: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542616603210_org.jpg' },
+                                { key: 'Jackson', image: 'https://photo-zmp3.zadn.vn/covers/f/7/f766f301706abd51957040cf1dedeaad_1510648555.jpg' },
+                                { key: 'Jackson', image: 'https://photo-zmp3.zadn.vn/cover/6/3/3/6/63369e512fbdd23fb18dc528564660df.jpg' },
+                            ]}
+                            renderItem={
+                                ({ item }) =>
+                                    <View>
+                                        <Image style={{ height: 80, width: 165, margin: 5, borderRadius: 5, resizeMode: 'stretch' }} source={{ uri: item.image }}></Image>
+                                    </View>
+                            } />
                     </View>
                 </ScrollView>
             </View >
