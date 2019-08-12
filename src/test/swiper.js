@@ -59,17 +59,19 @@ export default class swiper extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Swiper style={styles.wrapper} height={50} horizontal={true} autoplay>
-                    <View style={styles.slide1}>
-                        <Text style={styles.text}>Hello Swiper</Text>
-                    </View>
-                    <View style={styles.slide2}>
-                        <Text style={styles.text}>Beautiful</Text>
-                    </View>
-                    <View style={styles.slide3}>
-                        <Text style={styles.text}>And simple</Text>
-                    </View>
-                </Swiper>
+                <View style={{ height: 200 }}>
+                    <Swiper style={styles.wrapper} height={50} horizontal={true} autoplay>
+                        <View style={styles.slide1}>
+                            <Text style={styles.text}>Hello Swiper</Text>
+                        </View>
+                        <View style={styles.slide2}>
+                            <Text style={styles.text}>Beautiful</Text>
+                        </View>
+                        <View style={styles.slide3}>
+                            <Text style={styles.text}>And simple</Text>
+                        </View>
+                    </Swiper>
+                </View>
 
                 <Swiper style={styles.wrapper} height={240}
                     onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
