@@ -8,16 +8,17 @@ import {
     Dimensions
 } from 'react-native';
 import styles from '../styles/TabStyles';
+const SCREEN_WIDTH = Dimensions.get("window").width
+const SCREEN_HEIGHT = Dimensions.get('window').height
+
 export default class DetailsPlaylist extends Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
                 <FlatList
                     style={{ flex: 1, }}
-                    numColumns={2}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
-                    columnWrapperStyle={{ justifyContent: 'space-around' }}
                     data={[
                         {
                             playlist: 'PlayList Name 0',
