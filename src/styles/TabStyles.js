@@ -1,6 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
+        flexDirection: 'column',
+    },
     bar: {
         width: '100%',
         height: 50,
