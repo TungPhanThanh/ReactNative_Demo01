@@ -108,10 +108,13 @@ export default class HomeTab extends Component {
                                 ]}
                                 renderItem={
                                     ({ item }) =>
-                                        <View>
-                                            <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={require('../image/trangbom.jpg')}></Image>
-                                            <Text style={{ margin: 5 }}>{item.key}</Text>
-                                        </View>
+                                        <TouchableWithoutFeedback
+                                            onPress={() => this.props.navigation.navigate('ListSong')}>
+                                            <View>
+                                                <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={require('../image/trangbom.jpg')}></Image>
+                                                <Text style={{ margin: 5 }}>{item.key}</Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                                 }
                             />
                             <TouchableWithoutFeedback
@@ -147,10 +150,13 @@ export default class HomeTab extends Component {
                                 ]}
                                 renderItem={
                                     ({ item }) =>
-                                        <View>
-                                            <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={{ uri: item.image }}></Image>
-                                            <Text style={{ margin: 5 }}>{item.key}</Text>
-                                        </View>
+                                        <TouchableWithoutFeedback
+                                            onPress={() => this.props.navigation.navigate('ListSong')}>
+                                            <View>
+                                                <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={{ uri: item.image }}></Image>
+                                                <Text style={{ margin: 5 }}>{item.key}</Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                                 } />
                             <TouchableWithoutFeedback
                                 style={{ height: 20, marginTop: 20 }}

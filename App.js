@@ -83,10 +83,13 @@ const HomeStack = createStackNavigator({
 });
 
 HomeStack.navigationOptions = ({ navigation }) => {
-  let {routeName} = navigation.state.routes[navigation.state.index]
+  let { routeName } = navigation.state.routes[navigation.state.index]
   let navigationOptions = {}
-  if(routeName === 'DetailsPlaylist'){
-    navigationOptions.tabBarVisible = false
+  switch (routeName) {
+    case 'DetailsPlaylist':
+    case 'ListSong':
+      navigationOptions.tabBarVisible = false;
+      break;
   }
   return navigationOptions
 }
