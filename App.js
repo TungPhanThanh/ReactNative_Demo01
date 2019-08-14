@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Dimensions } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   createAppContainer,
@@ -13,6 +13,9 @@ import MenuTab from './src/screens/MenuTab';
 import PersonTab from './src/screens/PersonTab';
 import SettingTab from './src/screens/SettingTab';
 import DetailsPlaylist from './src/screens/DetailsPlaylist';
+import ListSong from './src/screens/ListSong';
+const SCREEN_WIDTH = Dimensions.get("window").width
+const SCREEN_HEIGHT = Dimensions.get('window').height
 
 class IconWithBadge extends React.Component {
   render() {
@@ -71,7 +74,25 @@ const HomeStack = createStackNavigator({
       },
     },
   },
+  ListSong: {
+    screen: ListSong,
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
+
+HomeStack.navigationOptions = ({ navigation }) => {
+  let { routeName } = navigation.state.routes[navigation.state.index]
+  let navigationOptions = {}
+  switch (routeName) {
+    case 'DetailsPlaylist':
+    case 'ListSong':
+      navigationOptions.tabBarVisible = false;
+      break;
+  }
+  return navigationOptions
+}
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -79,11 +100,9 @@ const TabNavigator = createBottomTabNavigator(
       screen: HomeStack,
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor }) => {
-          let IconComponent = Ionicons;
           let iconName;
-          IconComponent = HomeIconWithBadge;
           iconName = `ios-globe${focused ? '' : ''}`;
-          return <IconComponent name={iconName} size={25} color={tintColor} />;
+          return <Ionicons name={iconName} size={25} color={tintColor} />;
         },
         tabBarLabel: 'Discover',
       },
@@ -103,9 +122,11 @@ const TabNavigator = createBottomTabNavigator(
       screen: PersonTab,
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor }) => {
+          let IconComponent = Ionicons;
           let iconName;
+          IconComponent = HomeIconWithBadge;
           iconName = `ios-person${focused ? '' : ''}`;
-          return <Ionicons name={iconName} size={25} color={tintColor} />;
+          return <IconComponent name={iconName} size={25} color={tintColor} />;
         },
         tabBarLabel: 'Person',
       },

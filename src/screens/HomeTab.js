@@ -9,7 +9,8 @@ import {
     StatusBar,
     FlatList,
     TouchableOpacity,
-    SafeAreaView
+    TouchableWithoutFeedback,
+    SafeAreaView,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import styles from '../styles/TabStyles';
@@ -63,9 +64,12 @@ export default class HomeTab extends Component {
                                     top: -150, left: null, right: 10,
                                 }}>
                                 <View style={styles.slide}>
-                                    <Image
-                                        style={{ height: '100%', width: '100%' }}
-                                        source={{ uri: 'https://lh3.googleusercontent.com/uL2fI2IeyDgEZZUgddz7ZDGY_t0NG_TOZXCiSA0OOKhXAbPIQKCiKIPNiiItNiQ3fA' }}></Image>
+                                    <TouchableWithoutFeedback
+                                        onPress={() => this.props.navigation.navigate('DetailsPlaylist')}>
+                                        <Image
+                                            style={{ height: '100%', width: '100%' }}
+                                            source={{ uri: 'https://lh3.googleusercontent.com/uL2fI2IeyDgEZZUgddz7ZDGY_t0NG_TOZXCiSA0OOKhXAbPIQKCiKIPNiiItNiQ3fA' }}></Image>
+                                    </TouchableWithoutFeedback>
                                 </View>
                                 <View style={styles.slide}>
                                     <Image style={{ height: '100%', width: '100%' }} source={{ uri: 'https://www.isb.edu.vn/Res/global/images/zing.jpg' }}></Image>
@@ -79,10 +83,13 @@ export default class HomeTab extends Component {
                             </Swiper>
                         </View>
                         {/* Flast List View */}
-                        <View style={{ marginTop: 10, marginBottom: 5, }}>
-                            <View style={{ height: 30, marginStart: 5 }}>
-                                <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>CÓ THỂ BẠN MUỐN NGHE ></Text>
-                            </View>
+                        <View style={{ marginTop: 30, marginBottom: 10, }}>
+                            <TouchableWithoutFeedback
+                                onPress={() => this.props.navigation.navigate('DetailsPlaylist')}>
+                                <View style={{ height: 30, marginStart: 5, marginBottom: 10 }}>
+                                    <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>CÓ THỂ BẠN MUỐN NGHE ></Text>
+                                </View>
+                            </TouchableWithoutFeedback>
                             <FlatList
                                 style={{ height: 150 }}
                                 horizontal={true}
@@ -101,23 +108,30 @@ export default class HomeTab extends Component {
                                 ]}
                                 renderItem={
                                     ({ item }) =>
-                                        <View>
-                                            <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={require('../image/trangbom.jpg')}></Image>
-                                            <Text style={{ margin: 5 }}>{item.key}</Text>
-                                        </View>
+                                        <TouchableWithoutFeedback
+                                            onPress={() => this.props.navigation.navigate('ListSong')}>
+                                            <View>
+                                                <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={require('../image/trangbom.jpg')}></Image>
+                                                <Text style={{ margin: 5 }}>{item.key}</Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                                 }
                             />
-                            <TouchableOpacity
-                                style={{ height: 20, marginTop: 20 }}
+                            <TouchableWithoutFeedback
+                                style={{ height: 30, }}
                                 onPress={() => this.props.navigation.navigate('DetailsPlaylist')}>
-                                <Text style={{ color: 'purple', fontSize: 12, paddingTop: 5, textAlign: 'center' }}>Xem thêm ></Text>
-                            </TouchableOpacity>
+                                <Text
+                                    style={{ color: 'purple', fontSize: 12, paddingTop: 5, textAlign: 'center', marginTop: 15, }}>Xem thêm ></Text>
+                            </TouchableWithoutFeedback>
                         </View>
                         {/* Flast List View */}
                         <View style={{ marginTop: 5, marginBottom: 10, }}>
-                            <TouchableOpacity style={{ height: 30, marginStart: 5 }}>
-                                <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>PLAYLIST NGHE GẦN ĐÂY ></Text>
-                            </TouchableOpacity>
+                            <TouchableWithoutFeedback
+                                onPress={() => this.props.navigation.navigate('DetailsPlaylist')}>
+                                <View style={{ height: 30, marginStart: 5, }}>
+                                    <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>PLAYLIST NGHE GẦN ĐÂY ></Text>
+                                </View>
+                            </TouchableWithoutFeedback>
                             <FlatList
                                 style={{ height: 150 }}
                                 horizontal={true}
@@ -136,22 +150,25 @@ export default class HomeTab extends Component {
                                 ]}
                                 renderItem={
                                     ({ item }) =>
-                                        <View>
-                                            <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={{ uri: item.image }}></Image>
-                                            <Text style={{ margin: 5 }}>{item.key}</Text>
-                                        </View>
+                                        <TouchableWithoutFeedback
+                                            onPress={() => this.props.navigation.navigate('ListSong')}>
+                                            <View>
+                                                <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={{ uri: item.image }}></Image>
+                                                <Text style={{ margin: 5 }}>{item.key}</Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                                 } />
-                            <TouchableOpacity
+                            <TouchableWithoutFeedback
                                 style={{ height: 20, marginTop: 20 }}
                                 onPress={() => this.props.navigation.navigate('DetailsPlaylist')}>
-                                <Text style={{ color: 'purple', fontSize: 12, paddingTop: 5, marginBottom: 10, textAlign: 'center' }}>Xem thêm ></Text>
-                            </TouchableOpacity>
+                                <Text style={{ color: 'purple', fontSize: 12, paddingTop: 5, marginBottom: 10, marginTop: 15, textAlign: 'center' }}>Xem thêm ></Text>
+                            </TouchableWithoutFeedback>
                         </View>
                         {/* Grid View  */}
                         <View style={{ marginTop: 10, marginBottom: 5, }}>
-                            <TouchableOpacity style={{ height: 30, marginStart: 5, marginBottom: 10, }}>
+                            <View style={{ height: 30, marginStart: 5, marginBottom: 10, }}>
                                 <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>#CHARTATTACK OF WEEK</Text>
-                            </TouchableOpacity>
+                            </View>
                             <FlatList
                                 style={{ height: 200 }}
                                 numColumns={2}
@@ -166,16 +183,19 @@ export default class HomeTab extends Component {
                                 ]}
                                 renderItem={
                                     ({ item }) =>
-                                        <View>
-                                            <Image style={{ height: 80, width: 165, margin: 5, borderRadius: 5, resizeMode: 'stretch' }} source={{ uri: item.image }}></Image>
-                                        </View>
+                                        <TouchableWithoutFeedback
+                                            onPress={() => this.props.navigation.navigate('DetailsPlaylist')}>
+                                            <View>
+                                                <Image style={{ height: 80, width: 165, margin: 5, borderRadius: 5, resizeMode: 'stretch' }} source={{ uri: item.image }}></Image>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                                 } />
                         </View>
                         {/* Horizontal Flast list */}
                         <View style={{ marginTop: 10, marginBottom: 5, }}>
-                            <TouchableOpacity style={{ height: 30, marginStart: 5, marginBottom: 10, }}>
+                            <View style={{ height: 30, marginStart: 5, marginBottom: 10, }}>
                                 <Text style={{ fontWeight: 'bold', fontSize: 18, paddingTop: 5 }}>CHỦ ĐỀ VÀ THỂ LOẠI</Text>
-                            </TouchableOpacity>
+                            </View>
                             <FlatList
                                 style={{ height: 100 }}
                                 horizontal={true}
@@ -192,7 +212,7 @@ export default class HomeTab extends Component {
                                 renderItem={
                                     ({ item }) =>
                                         <View>
-                                            <Image style={{ height: 80, width: 165, margin: 5, borderRadius: 5, resizeMode: 'stretch' }} source={{ uri: item.image }}></Image>
+                                            <Image style={{ height: 80, width: 165, margin: 5, borderRadius: 7, resizeMode: 'stretch' }} source={{ uri: item.image }}></Image>
                                         </View>
                                 } />
                         </View>
