@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import styles from '../styles/TabStyles';
+import PLAYLISTDATA from '../data/DataPlaylist';
 
 export default class HomeTab extends Component {
 
@@ -30,6 +31,7 @@ export default class HomeTab extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
+                <StatusBar hidden={true} />
                 <View style={{ flex: 1 }}>
                     {/* Search View */}
                     <View style={styles.bar}>
@@ -91,28 +93,17 @@ export default class HomeTab extends Component {
                                 </View>
                             </TouchableWithoutFeedback>
                             <FlatList
-                                style={{ height: 150 }}
+                                style={{ height: 160 }}
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
-                                data={[
-                                    { key: 'Devin' },
-                                    { key: 'Dan' },
-                                    { key: 'Dominic' },
-                                    { key: 'Jackson' },
-                                    { key: 'James' },
-                                    { key: 'Joel' },
-                                    { key: 'John' },
-                                    { key: 'Jillian' },
-                                    { key: 'Jimmy' },
-                                    { key: 'Julie' },
-                                ]}
+                                data={PLAYLISTDATA}
                                 renderItem={
                                     ({ item }) =>
                                         <TouchableWithoutFeedback
                                             onPress={() => this.props.navigation.navigate('ListSong')}>
                                             <View>
-                                                <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={require('../image/trangbom.jpg')}></Image>
-                                                <Text style={{ margin: 5 }}>{item.key}</Text>
+                                                <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={{ uri: item.image }}></Image>
+                                                <Text style={{ margin: 5 }}>{item.playlist}</Text>
                                             </View>
                                         </TouchableWithoutFeedback>
                                 }
@@ -133,28 +124,17 @@ export default class HomeTab extends Component {
                                 </View>
                             </TouchableWithoutFeedback>
                             <FlatList
-                                style={{ height: 150 }}
+                                style={{ height: 160 }}
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
-                                data={[
-                                    { key: 'Devin', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'Dan', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'Dominic', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'Jackson', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'James', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'Joel', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'John', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'Jillian', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'Jimmy', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                    { key: 'Julie', image: 'https://static-zmp3.zadn.vn/skins/common/logo600.png' },
-                                ]}
+                                data={PLAYLISTDATA}
                                 renderItem={
                                     ({ item }) =>
                                         <TouchableWithoutFeedback
                                             onPress={() => this.props.navigation.navigate('ListSong')}>
                                             <View>
                                                 <Image style={{ height: 120, width: 120, margin: 5, borderRadius: 5, }} source={{ uri: item.image }}></Image>
-                                                <Text style={{ margin: 5 }}>{item.key}</Text>
+                                                <Text style={{ margin: 5 }}>{item.playlist}</Text>
                                             </View>
                                         </TouchableWithoutFeedback>
                                 } />
