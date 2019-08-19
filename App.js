@@ -14,8 +14,7 @@ import PersonTab from './src/screens/PersonTab';
 import SettingTab from './src/screens/SettingTab';
 import DetailsPlaylist from './src/screens/DetailsPlaylist';
 import ListSong from './src/screens/ListSong';
-const SCREEN_WIDTH = Dimensions.get("window").width
-const SCREEN_HEIGHT = Dimensions.get('window').height
+import Player from './src/screens/PlayingScreen/Application';
 
 class IconWithBadge extends React.Component {
   render() {
@@ -80,6 +79,12 @@ const HomeStack = createStackNavigator({
       header: null,
     },
   },
+  Player: {
+    screen: Player,
+    navigationOptions: {
+      header: null,
+    },
+  }
 });
 
 HomeStack.navigationOptions = ({ navigation }) => {
@@ -88,6 +93,7 @@ HomeStack.navigationOptions = ({ navigation }) => {
   switch (routeName) {
     case 'DetailsPlaylist':
     case 'ListSong':
+    case 'Player':
       navigationOptions.tabBarVisible = false;
       break;
   }
